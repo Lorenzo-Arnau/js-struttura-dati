@@ -49,7 +49,7 @@ const cards =[
   editionType: editions['SP'],
   description:'',
   story:'We cannot forget that ecc...',
-  authorString:'autore copyright autore',
+  authorString:'autore ',
   cardColor: fieldCodes[4],
   score: {
     power: 2,  // filtrarlo per power
@@ -73,7 +73,7 @@ const cards =[
   editionType: editions['SP'],
   description:'Flying vigilance',
   story:'The angel remembers ecc...',
-  authorString:'autore copyright autore',
+  authorString:'autore ',
   cardColor: fieldCodes[0],
   score: {
     power: 4,  // filtrarlo per power
@@ -117,7 +117,7 @@ const cards =[
   editionType: editions['SP'],
   description:'When Titan ecc..',
   story:'Even if we defeat it ecc...',
-  authorString:'autore copyright autore',
+  authorString:'autore',
   cardColor: fieldCodes[1],
   score: {
     power: 5,  // filtrarlo per power
@@ -138,7 +138,7 @@ const cards =[
   editionType: editions['SP'],
   description:'When paralyze ecc..',
   story:'',
-  authorString:'autore copyright autore',
+  authorString:'autore',
   cardColor: fieldCodes[2],
   score: {
     power: 0,  // filtrarlo per power
@@ -166,9 +166,13 @@ function render (elementoDom,array){
   cardListHTMLElement.innerHTML ='';
   array.forEach((item) => {
     cardListHTMLElement.innerHTML += `
-    <div>
-    ${item.cardName}
-    </div>
+    <div class="card-body">
+      <div class="card-head">${item.cardName} ${item.cost.genericCostNumber}${item.cost.costFields}</div>
+      <div class="card-image">${item.picture}</div>
+      <div class="card-specs">${item.cardType} - ${item.cardObject}</div>
+      <div class="card-desc">${item.description} </br> ${item.story}</div>
+      <div class="card-author">${item.authorString}</div>
+      <div class="card-power">${item.score.power}/${item.score.toughness}</div>
     `
   });
 }

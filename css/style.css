@@ -1,0 +1,47 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#container{
+  display: flex;
+  justify-content: space-around;
+}
+.card-body{
+  height: 400px;
+  width: 300px;
+  border: 1px solid #000;
+}
+.card-head{
+  height: 50px;
+  width: 100%;
+  border: 1px solid #000;
+}
+.card-image{
+  height: 200px;
+  width: 100%;
+  border: 1px solid #000;
+}
+.card-specs{
+  height: 40px;
+  width: 100%;
+  border: 1px solid #000;
+}
+.card-desc{
+  height: 80px;
+  width: 100%;
+  border: 1px solid #000;
+}
+.card-author{
+  height: 30px;
+  width: 100px;
+  border: 1px solid #000;
+  float: left;
+}
+.card-power{
+  height: 30px;
+  width: 40px;
+  border: 1px solid #000;
+  float:right;
+
+}
