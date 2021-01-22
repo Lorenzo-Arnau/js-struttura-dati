@@ -148,23 +148,20 @@ const cards =[
 console.log(cards);
 const page =  $('#container');
 const selector = $('.filter');
-cards.forEach((item) => {
-page.append(`
-<div>
-${item.cardName}
-</div>
-`)
-});
-
-
 selector.change(function(){
   page.html('');
   let valore = $(this).val();
   console.log(valore);
   const powerList = [];
+  const typeList =[];
   cards.forEach((element) => {
     if(!powerList.includes(element.score.power)) {
       powerList.push(`Power ${element.score.power} name ${element.cardName}`);
+    }
+  });
+  cards.forEach((element) => {
+    if(!typeList.includes(element.cardType)) {
+      typeList.push(`Type ${element.cardType} name ${element.cardName}`);
     }
   });
   console.log(powerList);
@@ -179,6 +176,15 @@ selector.change(function(){
         `)
       });
       break;
+      case 'type':
+        typeList.forEach((item) => {
+          page.append(`
+          <div>
+          ${item}
+          </div>
+          `)
+        });
+        break;
     default:
     cards.forEach((item) => {
     page.append(`
@@ -189,3 +195,4 @@ selector.change(function(){
     });
   }
 })
+selector.change();
