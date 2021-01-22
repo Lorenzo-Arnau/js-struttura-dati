@@ -149,7 +149,8 @@ const cards =[
 console.log(cards);
 const page =  $('#container');
 const selector = $('.filter');
-// -------------------------------------------
+const selectorDue = $('.filter-due');
+// -------------------------------------------ELENCO FUNZIONI
 function filterbyPower(powerValue,array){
   return array.filter((element) =>{
   return element.score.power === powerValue
@@ -184,20 +185,23 @@ function renderSelect(elementoDom,array){
 // -----------------------------------------------
 selector.change(function(){
   const selectValue = $(this).val();
-  // -------------------------------------------------
-  // funzione per power
-  // if (isNaN(selectValue)) {
-  //     render('container',cards)
-  // }else{
-  //----------------------------------------------
   if (selectValue== 'all') {
        render('container',cards)
    }else{
-  const filterdArray = filterbyPower(selectValue,cards);
   const filtredByType = filterbyType(selectValue,cards);
   render('container',filtredByType)
  }
 })
-// renderSelect('menu-selezione',powerValue)
+
+selectorDue.change(function(){
+  const selectValue = parseInt($(this).val());
+   if (isNaN(selectValue)) {
+       render('container',cards)
+   }else{
+  const filterdArray = filterbyPower(selectValue,cards);
+  render('container',filterdArray)
+ }
+})
+renderSelect('menu-selezione-due',powerValue)
 renderSelect('menu-selezione',cardTypes)
 render('container',cards)
