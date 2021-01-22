@@ -184,13 +184,19 @@ function renderSelect(elementoDom,array){
 // -----------------------------------------------
 selector.change(function(){
   const selectValue = $(this).val();
+  // -------------------------------------------------
+  // funzione per power
   // if (isNaN(selectValue)) {
   //     render('container',cards)
   // }else{
+  //----------------------------------------------
+  if (selectValue== 'all') {
+       render('container',cards)
+   }else{
   const filterdArray = filterbyPower(selectValue,cards);
   const filtredByType = filterbyType(selectValue,cards);
   render('container',filtredByType)
-// }
+ }
 })
 // renderSelect('menu-selezione',powerValue)
 renderSelect('menu-selezione',cardTypes)
