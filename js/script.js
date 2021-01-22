@@ -31,6 +31,7 @@ const editions = {
 
 }
 
+const powerValue = [1,2,3,4,5];
 
 const cards =[
   {
@@ -148,51 +149,49 @@ const cards =[
 console.log(cards);
 const page =  $('#container');
 const selector = $('.filter');
-selector.change(function(){
-  page.html('');
-  let valore = $(this).val();
-  console.log(valore);
-  const powerList = [];
-  const typeList =[];
-  cards.forEach((element) => {
-    if(!powerList.includes(element.score.power)) {
-      powerList.push(`Power ${element.score.power} name ${element.cardName}`);
-    }
-  });
-  cards.forEach((element) => {
-    if(!typeList.includes(element.cardType)) {
-      typeList.push(`Type ${element.cardType} name ${element.cardName}`);
-    }
-  });
-  console.log(powerList);
-  powerList.sort();
-  switch (valore) {
-    case 'power':
-      powerList.forEach((item) => {
-        page.append(`
-        <div>
-        ${item}
-        </div>
-        `)
-      });
-      break;
-      case 'type':
-        typeList.forEach((item) => {
-          page.append(`
-          <div>
-          ${item}
-          </div>
-          `)
-        });
-        break;
-    default:
-    cards.forEach((item) => {
-    page.append(`
+// -------------------------------------------
+function filterbyPower(powerValue,array){
+  return array.filter((element) =>{
+  return element.score.power === powerValue
+});
+}
+function filterbyType(typeValue,array){
+  return array.filter((element) =>{
+  return element.cardType === typeValue
+});
+}
+function render (elementoDom,array){
+  const cardListHTMLElement = document.getElementById(elementoDom);
+  cardListHTMLElement.innerHTML ='';
+  array.forEach((item) => {
+    cardListHTMLElement.innerHTML += `
     <div>
     ${item.cardName}
     </div>
-    `)
-    });
-  }
+    `
+  });
+}
+function renderSelect(elementoDom,array){
+  const select = document.getElementById(elementoDom);
+  array.forEach((item) => {
+    select.innerHTML += `
+    <option value=${item}>
+    ${item}
+    </option>
+    `
+  });
+}
+// -----------------------------------------------
+selector.change(function(){
+  const selectValue = $(this).val();
+  // if (isNaN(selectValue)) {
+  //     render('container',cards)
+  // }else{
+  const filterdArray = filterbyPower(selectValue,cards);
+  const filtredByType = filterbyType(selectValue,cards);
+  render('container',filtredByType)
+// }
 })
-selector.change();
+// renderSelect('menu-selezione',powerValue)
+renderSelect('menu-selezione',cardTypes)
+render('container',cards)
